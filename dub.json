@@ -1,0 +1,29 @@
+{
+	"name": "bedcov-ist",
+	"description": "bedcov with interval splay trees",
+	"authors": ["James S Blachly, MD"],
+	"homepage": "http://github.com/blachlylab/bedcov-ist",
+	"license": "MIT",
+	"dependencies": {
+		"emsi_containers": "~>0.8.0-alpha.12",
+        "intervaltree": {"path": "../intervaltree"}
+	},
+	"buildRequirements": [ "allowWarnings" ],
+	"configurations": [
+		{
+			"name": "splaytree",
+			"version": "splay",
+			"targetType": "executable"
+		},
+		{
+			"name": "avltree",
+			"version": "avl",
+			"targetType": "executable"
+		},
+		{
+			"name": "iitree",
+			"version": "iitree",
+			"targetType": "executable"
+		}
+	]
+}
