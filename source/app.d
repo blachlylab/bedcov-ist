@@ -22,7 +22,8 @@ int main(string[] args)
 {
     version(iitree)
     {
-        IITree!BasicInterval treesByContig;
+        // ugly
+        IITree!BasicInterval treesByContig = IITree!(BasicInterval)(cr_init());
     }
     else
     {
@@ -64,6 +65,7 @@ int main(string[] args)
         }
     }
 
+    version(iitree) treesByContig.index();
 
     // Now intersect the second bedfile
     foreach(line; fi2.byLine())
@@ -80,7 +82,7 @@ int main(string[] args)
 
         version(iitree)
         {
-            if (treesByContig.cr_get_ctg(this.cr, toStringz(contig)) == -1) continue;
+            if (cr_get_ctg( treesByContig.cr, toStringz(contig) ) == -1) continue;
         }
         else
         {
@@ -88,17 +90,12 @@ int main(string[] args)
             if (tree is null) continue;
         }
 
-        auto i = BasicInterval(start, end);
-
         version(iitree)
-            auto o = treesByContig.findOverlapsWith(i);             // returns cr_intv_t*(s)
+            auto o = treesByContig.findOverlapsWith(contig, BasicInterval(start, end));             // returns cr_intv_t*(s)
         else
-            auto o = treesByContig[contig].findOverlapsWith(i);   // returns Node*(s)
+            auto o = treesByContig[contig].findOverlapsWith(BasicInterval(start, end));   // returns Node*(s)
 
-        version(iitree)
-            printf("%s\t%d\t%d\t%ld\n", toStringz(contig), cr_st(r), cr_st(r), o.length);
-        else
-            printf("%s\t%d\t%d\t%ld\n", toStringz(contig), start, end, o.length);
+        printf("%s\t%d\t%d\t%ld\n", toStringz(contig), start, end, o.length);
 
     }
 

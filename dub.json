@@ -12,17 +12,17 @@
 	"configurations": [
 		{
 			"name": "splaytree",
-			"version": "splay",
+			"versions": ["splay"],
 			"targetType": "executable"
 		},
 		{
 			"name": "avltree",
-			"version": "avl",
+			"versions": ["avl"],
 			"targetType": "executable"
 		},
 		{
 			"name": "iitree",
-			"version": "iitree",
+			"versions": ["iitree"],
 			"targetType": "executable"
 		}
 	]
