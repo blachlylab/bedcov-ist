@@ -12,12 +12,12 @@
 	"configurations": [
 		{
 			"name": "splaytree",
-			"versions": ["splay"],
+			"versions": ["splaytree"],
 			"targetType": "executable"
 		},
 		{
 			"name": "avltree",
-			"versions": ["avl"],
+			"versions": ["avltree"],
 			"targetType": "executable"
 		},
 		{
